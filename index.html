@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad Jokes</title>
+    <style>
+        *{
+            padding:0px;
+            margin:0px;
+            box-sizing: border-box;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            display:grid;
+            justify-content: center;
+            align-items: center;
+            background:skyblue;
+        }
+        .container{
+            
+            width:40rem;
+            height:40%;
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            & h1{
+                margin-top: 1rem;
+                margin-left: 23%;
+            }
+            & .api_body{
+                width:40rem;
+                height:10%;
+                /* margin-left:7% ; */
+                margin-top:10%;
+                margin-bottom: 10%;
+                text-align: center;
+            }
+            & button{
+                /* display:grid; */
+                margin-left: 37%;
+                /* margin-bottom:2%; */
+                text-align: center;
+                padding:1rem;
+                border-radius: 0.5rem;
+                background-color: yellow;
+            }
+          
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+    <h1>Welcome to Dad Jokes!</h1>
+    <section class="api_body"></section>
+    <button id="fetchJoke">Get Another Joke</button>
+ </div>   
+ <script>
+    const api_body = document.querySelector(".api_body");
+    // const apiUrl = "https://jsonplaceholder.typicode.com/posts/1";
+    const apiUrl = "https://icanhazdadjoke.com/";
+    //fetch data
+    const fetchData=()=>{ //if ok:true and status:200 mean api 
+        fetch(apiUrl,{
+            headers:{
+                Accept:"application/json",
+            },
+            }).then((res)=>{
+            console.log(res);
+            
+            return res.json();
+        }).then((data)=>{
+ console.log(data.joke);
+ api_body.innerHTML=data.joke;
+ 
+        }).catch((error)=>{console.log("we found error");
+        })
+    } 
+
+    //Add event listener to fetch a new joke when the button is clicked successful
+    document.getElementById("fetchJoke").addEventListener("click",fetchData);
+ </script>
+</body>
+</html>
