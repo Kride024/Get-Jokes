@@ -61,6 +61,7 @@
     // const apiUrl = "https://jsonplaceholder.typicode.com/posts/1";
     const apiUrl = "https://icanhazdadjoke.com/";
     //fetch data
+    // fetchData();
     const fetchData=()=>{ //if ok:true and status:200 mean api 
         fetch(apiUrl,{
             headers:{
@@ -76,7 +77,8 @@
  
         }).catch((error)=>{console.log("we found error");
         })
-    } 
+    } ;
+    fetchData();
 
     //Add event listener to fetch a new joke when the button is clicked successful
     document.getElementById("fetchJoke").addEventListener("click",fetchData);
